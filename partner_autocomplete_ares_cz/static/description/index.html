@@ -1,0 +1,90 @@
+<html>
+<style>
+    /* centering */
+    .image-center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    h1,
+    h2 {
+        color: #21B799;
+    }
+</style>
+<h1 id="partner-autocomplete-ares-cz">Partner Autocomplete Ares CZ</h1>
+<img src="icon.png" style="display: block; margin-left: auto; margin-right: auto; width:150px; height:150px;"
+    alt="logo">
+
+<p><img src="https://raster.shields.io/badge/license-Other_proprietary-blue.png" alt="License: Other proprietary" /></p>
+<div class="line-block">Completes Partner information using ARES from <a
+        href="https://wwwinfo.mfcr.cz/">https://wwwinfo.mfcr.cz/</a><br />
+    <br />
+    Availiable countries
+</div>
+<ol>
+    <li>Czech Republic</li>
+</ol>
+<div class="line-block">Information that can be completed:</div>
+<ol>
+    <li>Address</li>
+    <li>Tax ID</li>
+    <li>
+        <dl>
+            <dt>Dynamically mappable fields (see Configuration point 4.):</dt>
+            <dd>
+                <ul>
+                    <li>Company identification number</li>
+                </ul>
+            </dd>
+        </dl>
+    </li>
+</ol>
+<p><strong style="color:#21B799;">Table of contents</strong></p>
+<div class="contents" data-local="">
+    <ul>
+        <li><a href="#configuration">Configuration</a></li>
+        <li><a href="#autocomplete-during-import">Autocomplete During Import</a></li>
+        <li><a href="#manual-update-of-records">Manual Update of Records</a></li>
+        <li><a href="#usage">Usage</a></li>
+        <li><a href="#author">Author</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</div>
+<h2 id="configuration">Configuration</h2>
+<ol>
+    <li>Go to <em>Settings &gt; General Settings &gt; Contacts</em></li>
+    <li>Enable <em>Partner Autocomplete</em></li>
+    <li>Choose provider ARES.cz</li>
+    <li>Choose fields for mapping (optional)</li>
+</ol>
+<div class="line-block"><br />
+    Dynamically mappable fields used to paste data from ARES.cz to any field
+    in res.partner(Contact) model.</div>
+<h2 id="autocomplete-during-import">Autocomplete During Import</h2>
+<ol>
+    <li>Create import file with columns: <em>name</em> and
+        <em>import_enrich_company</em> (it can have other columns as well)
+    </li>
+    <li>In the <em>import_enrich_company</em> column, enter
+        <em>CIN</em>
+    </li>
+    <li>Import the file</li>
+</ol>
+<h2 id="manual-update-of-records">Manual Update of Records</h2>
+<ol>
+    <li>Go to <em>Contacts</em></li>
+    <li>Switch to the list view</li>
+    <li>Select records you want to update</li>
+    <li>Click <em>Action &gt; Update</em></li>
+</ol>
+<h2 id="usage">Usage</h2>
+<p><img class="image-center" src="ares_usage.gif" alt="Usage GIF" /></p>
+<h2 id="author">Author</h2>
+<ul>
+    <li>Data Dance s.r.o.</li>
+</ul>
+<h2 id="contact">Contact</h2>
+<p><a href="https://www.datadance.eu/">https://www.datadance.eu/</a></p>
+
+</html>
