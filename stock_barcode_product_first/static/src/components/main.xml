@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-inherit="stock_barcode.MainComponent" t-inherit-mode="extension">
+        <!-- Replace the location-grouped block with product-grouped for pickings -->
+        <xpath expr="//t[@t-foreach='env.model.groupedLinesByLocation']" position="replace">
+            <!-- Product-first grouping for pickings -->
+            <t t-if="env.model.useProductFirstGrouping" t-foreach="env.model.groupedLinesByProduct" t-as="group" t-key="group.product.id">
+                <div class="o_barcode_product_group">
+                    <!-- Product header separator -->
+                    <div class="o_barcode_product_line p-1 px-3 border d-flex align-items-center text-muted bg-secondary"
+                        t-att-data-product-id="group.product.id">
+                        <i class="fa fa-cube me-2"/>
+                        <span class="o_product_name fw-bold" t-out="group.product.display_name"/>
+                    </div>
+                    <!-- Lines for this product -->
+                    <t t-foreach="group.lines" t-as="line" t-key="line.virtual_id">
+                        <PackageLineComponent t-if="line.isPackageLine" line="line" displayUOM="false" openPackage.bind="onOpenPackage"/>
+                        <GroupedLineComponent t-elif="line.lines" line="line" displayUOM="groups.group_uom" editLine.bind="onOpenProductPage"/>
+                        <LineComponent t-else="" line="line" displayUOM="groups.group_uom" editLine.bind="onOpenProductPage"/>
+                    </t>
+                </div>
+            </t>
+            <!-- Fallback to location grouping for non-picking models (inventory, etc.) -->
+            <t t-if="!env.model.useProductFirstGrouping" t-foreach="env.model.groupedLinesByLocation" t-as="group" t-key="group.location.id">
+                <t t-set="currentLocation" t-value="env.model.location &amp;&amp; env.model.location.id == group.location.id"/>
+                <div class="o_barcode_location_group" t-att-class="currentLocation ? 'o_current_location' : ''">
+                    <div t-if="env.model.displaySourceLocation"
+                        class="o_barcode_location_line p-1 px-3 border d-flex align-items-center"
+                        t-att-class="currentLocation ? 'text-bg-400' : 'text-muted bg-secondary'"
+                        t-att-data-location-id="group.location.id"
+                        t-att-data-location="group.location.display_name">
+                        <i class="fa fa-map-marker me-2"/>
+                        <span class="o_location_name" t-out="group.location.display_name"/>
+                    </div>
+                    <t t-foreach="group.lines" t-as="line" t-key="line.virtual_id">
+                        <PackageLineComponent t-if="line.isPackageLine" line="line" displayUOM="false" openPackage.bind="onOpenPackage"/>
+                        <GroupedLineComponent t-elif="line.lines" line="line" displayUOM="groups.group_uom" editLine.bind="onOpenProductPage"/>
+                        <LineComponent t-else="" line="line" displayUOM="groups.group_uom" editLine.bind="onOpenProductPage"/>
+                    </t>
+                </div>
+            </t>
+        </xpath>
+    </t>
+
+    <!-- Show source location on each line when product-first grouping is active -->
+    <t t-inherit="stock_barcode.LineComponent" t-inherit-mode="extension">
+        <xpath expr="//t[@t-call='stock_barcode.LineDestinationLocation']" position="before">
+            <div t-if="env.model.useProductFirstGrouping and env.model.displaySourceLocation"
+                 name="source_location" title="Source Location" class="text-muted">
+                <i class="fa fa-fw fa-map-marker"/>
+                <span class="o_line_source_location fst-italic" t-esc="line.location_id.display_name"/>
+            </div>
+        </xpath>
+    </t>
+
+    <!-- Show source location on grouped lines (tracked products) too -->
+    <t t-inherit="stock_barcode.GroupedLineComponent" t-inherit-mode="extension">
+        <xpath expr="//t[@t-call='stock_barcode.LineDestinationLocation']" position="before">
+            <div t-if="env.model.useProductFirstGrouping and env.model.displaySourceLocation"
+                 name="source_location" title="Source Location" class="text-muted">
+                <i class="fa fa-fw fa-map-marker"/>
+                <span class="o_line_source_location fst-italic" t-esc="line.location_id.display_name"/>
+            </div>
+        </xpath>
+    </t>
+
+</templates>
