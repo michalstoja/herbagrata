@@ -50,6 +50,9 @@
             <field name="display_name" position="replace">
                 <field name="name" />
             </field>
+            <field name="qty_available" position="before">
+                <field name="free_qty"/>
+            </field>
         </field>
     </record>
 </odoo>
