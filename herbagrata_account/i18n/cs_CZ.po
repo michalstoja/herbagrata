@@ -1,0 +1,48 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* herbagrata_account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-30 14:34+0000\n"
+"PO-Revision-Date: 2026-04-30 14:34+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: herbagrata_account
+#: model_terms:ir.ui.view,arch_db:herbagrata_account.report_invoice_document
+msgid ""
+"<strong style=\"font-size: 9pt;\">Plant Passport / Rostlinolékařský "
+"pas</strong>"
+msgstr ""
+
+#. module: herbagrata_account
+#: model_terms:ir.ui.view,arch_db:herbagrata_account.report_invoice_document
+msgid "<strong>A: </strong>"
+msgstr ""
+
+#. module: herbagrata_account
+#: model_terms:ir.ui.view,arch_db:herbagrata_account.report_invoice_document
+msgid "<strong>B: </strong>CZ - 0656"
+msgstr ""
+
+#. module: herbagrata_account
+#: model_terms:ir.ui.view,arch_db:herbagrata_account.report_invoice_document
+msgid "<strong>C: </strong>10010 KontRad"
+msgstr ""
+
+#. module: herbagrata_account
+#: model_terms:ir.ui.view,arch_db:herbagrata_account.report_invoice_document
+msgid "<strong>D: </strong>CZ"
+msgstr ""
+
+#. module: herbagrata_account
+#: model_terms:ir.ui.view,arch_db:herbagrata_account.report_invoice_document
+msgid "<strong>Payment Method</strong>"
+msgstr "<strong>Forma úhrady</strong>"

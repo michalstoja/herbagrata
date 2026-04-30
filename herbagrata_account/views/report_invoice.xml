@@ -34,5 +34,16 @@
         <xpath expr="//td[@name='account_invoice_line_name']" position="attributes">
             <attribute name="t-attf-style">#{o.move_type == 'out_invoice' and 'border-left: 1px solid black; border-right: 1px solid black;' or ''} #{o.move_type == 'out_invoice' and line_last and 'border-bottom: 1px solid black;' or ''}</attribute>
         </xpath>
+        <xpath expr="//div[@name='reference']" position="after">
+            <div class="col" t-if="o.preferred_payment_method_line_id" name="payment_method">
+                <strong>Payment Method</strong>
+                <div t-field="o.preferred_payment_method_line_id.name">-</div>
+            </div>
+        </xpath>
+    </template>
+
+
+    <template id="registry_vat_external_layout_herbagrata" inherit_id="l10n_cz.registry_vat_external_layout">
+        <xpath expr="//li[@t-if=&quot;company.vat and company.account_fiscal_country_id.code == 'CZ'&quot;]" position="replace"/>
     </template>
 </odoo>
